@@ -15,4 +15,4 @@ Data should should be :
     8. Searching for the item they added on the bases of the Date and the Item both
     9. MAYBE give a montly record ----- MAYBE ------
 
-Type of the Data to use ]
+Type of the Data to use
