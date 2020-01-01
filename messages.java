@@ -21,9 +21,14 @@ public class messages{
         System.out.println("The Current Day is " + currDate.toStringDAY());
         //System.out.println("The Current Time is "+saveInventory.TIME + "\n");
         System.out.println(printUIStar());
-        System.out.println("Enter the option below to do the following tasks !");
+        System.out.println("Enter the option below to do the following tasks !"); 
+    }
+
+    // mehtod to print the menu for performing functions 
+    public void printMenu(){
         System.out.println(printUIStar());
-        System.out.println("1. Add an item to the database !"); 
+        System.out.println("1. Add an item to the database !");
+        System.out.println(printUIStar());
     }
 
     public String userInputMessage(){

@@ -14,5 +14,6 @@ Data should should be :
     7. Make new Files on the bases of dates 
     8. Searching for the item they added on the bases of the Date and the Item both
     9. MAYBE give a montly record ----- MAYBE ------
+    10. Add Freshness meter
 
 Type of the Data to use
