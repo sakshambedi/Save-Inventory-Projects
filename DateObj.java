@@ -29,18 +29,18 @@ public class DateObj{
     public String toStringDAY(){
         return currDay;
     }
-
+    
     // return the day value of the date thing
     public int toIntDay(){
-        return Integer.valueOf(currDay.substring(0,2));
+        return Integer.parseInt(currDay.substring(1,1));
     }
 
     public int toIntMonth(){
-        return Integer.valueOf(currDay.substring(4,6));
+        return Integer.parseInt(currDay.substring(4,6));
     }
 
     public int toIntYear(){
-        return Integer.valueOf(currDay.substring(7));
+        return Integer.parseInt(currDay.substring(7));
     }
 
 

@@ -23,7 +23,7 @@ public class saveInventory {
     static final int maxInput = 2;
     static messages printMessages = new messages();
     // creating a new object for date 
-    //static DateObj currDate = new DateObj();
+    static DateObj currDate = new DateObj();
 
     public static void main(String[] args) {
 
@@ -33,6 +33,10 @@ public class saveInventory {
         // create a fucking menu
         // use a java messages classes for that
         System.out.println(printMessages.printUIStar());
+
+        // debugging
+        System.out.println(currDate.toIntDay()); 
+
 
         // print menu messages
         printMessages.openMessage();
@@ -53,7 +57,6 @@ public class saveInventory {
 
         // close the scanner Object 
         enterItem.close();
-
     }
 
     // switch case for the value entered by the user 
