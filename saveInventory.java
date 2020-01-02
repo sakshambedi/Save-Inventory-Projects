@@ -12,6 +12,7 @@
 */
 
 // ------------ Importing Libararies --------------
+import java.util.Date;
 import java.util.Scanner;
 
 public class saveInventory {
@@ -20,22 +21,23 @@ public class saveInventory {
     // Creating a Scanner object 
     // accessible to all 
     static Scanner enterItem = new Scanner(System.in);
-    static final int maxInput = 2;
-    static messages printMessages = new messages();
-    // creating a new object for date 
-    static DateObj currDate = new DateObj();
+    static final int maxInput = 2; 
 
     public static void main(String[] args) {
 
         // creating an object print messages to creat a new object
         // this object contains all the printing messages 
-        
+        messages printMessages = new messages();
+
+        // creating a new object for date
+        DateObj currDate = new DateObj();
+
         // create a fucking menu
         // use a java messages classes for that
         System.out.println(printMessages.printUIStar());
 
         // debugging
-        System.out.println(currDate.toIntDay()); 
+        System.out.println(currDate.toIntDay() + "" + currDate.toIntMonth() + "" +  currDate.toIntYear()); 
 
 
         // print menu messages
