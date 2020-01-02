@@ -13,24 +13,26 @@
 
 // ------------ Importing Libararies --------------
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class saveInventory {
-    // Objects for time
+    
+    //--------------------- Class Variables ---------------------
     
     // Creating a Scanner object 
     // accessible to all 
     static Scanner enterItem = new Scanner(System.in);
     static final int maxInput = 2; 
+    // creating a new object for date
+    static DateObj currDate = new DateObj();
+
+    
+    // creating an object print messages to creat a new object
+    // this object contains all the printing messages        
+    static messages printMessages = new messages();
 
     public static void main(String[] args) {
-
-        // creating an object print messages to creat a new object
-        // this object contains all the printing messages 
-        messages printMessages = new messages();
-
-        // creating a new object for date
-        DateObj currDate = new DateObj();
 
         // create a fucking menu
         // use a java messages classes for that
@@ -74,6 +76,25 @@ public class saveInventory {
     // used for enterint data 
     // data stored in the items object 
     public static void enterData(){
+        System.out.print("Enter the Date (DD/MM/YYYY) : ");
+        String enteredDate = enterItem.next();
+        // try catch block to avoid exceptions
+        try{
+            if (currDate.validateDate(enteredDate)){
+                System.out.println("Function Works");
+            }else{
+                System.out.println("Please enter a valid date !");
+            }
+        }/*catch(StringIndexOutOfBoundsException StringIndexExcept){
+            //StringIndexExcept.printStackTrace();
+            System.out.println(printMessages.printUIStar());
+            System.out.println("The entered Date is not complete \nError : " + StringIndexExcept.getMessage());
+            System.out.println(printMessages.printUIStar());
+        }*/catch(InputMismatchException InputMisExcept){
+            System.out.println(printMessages.printUIStar());
+            System.out.println("Please enter single digit numbers as double digit.\nFor Example : Enter \"1\" as \"01\"   \nError : " + InputMisExcept.getMessage());
+            System.out.println(printMessages.printUIStar());
+        }
         
     }
 }

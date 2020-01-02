@@ -62,27 +62,63 @@ public class DateObj{
     }
 
 
-    public boolean validateDate(String expirationDate){
+    // this method validates date 
+    // if condition checks if the year is a leap year or no t
+    // if leap year makes sure that the condition for febuary is taken care of  
+    public boolean validateDate(String expirationDate) throws StringIndexOutOfBoundsException{
         String tempDate = expirationDate;    
-        // loop for leap year
-        if ((toIntYear(tempDate) % 4 == 0 ) && (toIntYear(tempDate) >= toIntYear()){
-            if(toIntMonth(tempDate) >0 && (toIntMonth(tempDate) <13 && (toIntMonth(tempDate) >= toIntMonth()){
+        // Conditions for leap year
+        if ((toIntYear(tempDate) % 4 == 0 ) && (toIntYear(tempDate) >= toIntYear()) ){
+            if(toIntMonth(tempDate) >0 && toIntMonth(tempDate)<13 && toIntMonth(tempDate) >= toIntMonth() ){
                 if(toIntMonth(tempDate) == 2){
-                    if (toIntDay(tempDate)>0 && toIntDay(tempDate) <30){
+                    if (toIntDay(tempDate)>0 && toIntDay(tempDate) <30 && toIntDay(tempDate) >= toIntDay() ){
                         return true;
                     }else{
                         System.out.println("The month of February can only have 29 days for Leap Year ! ");
                     }
-                }else if((toIntMonth(tempDate) == 1) || (toIntMonth(tempDate) == 3) || (toIntMonth(tempDate) == 5) || (toIntMonth(tempDate) == 7) || (toIntMonth(tempDate) == 8) || (toIntMonth(tempDate) == 10) || (toIntMonth(tempDate) == 12)){
-                    if((toIntDay(tempDate) >) 
+                }else if(( (toIntMonth(tempDate) == 1) || (toIntMonth(tempDate) == 3) || (toIntMonth(tempDate) == 5) || (toIntMonth(tempDate) == 7) || (toIntMonth(tempDate) == 8) || (toIntMonth(tempDate) == 10) || (toIntMonth(tempDate) ==12 )) && toIntMonth(tempDate) >= toIntMonth()  ){
+                    if( toIntDay(tempDate) > 0 && toIntDay(tempDate) < 32 && toIntDay(tempDate) >= toIntDay() ){
+                        return true;
+                    }else{
+                        System.out.println("This month can only have 31 Days ! ");
+                    } 
+                }else{
+                    if( toIntDay(tempDate) > 0 && toIntDay(tempDate) < 31 && toIntDay(tempDate) >= toIntDay() ){
+                        return true;
+                    }else{
+                        System.out.println("This month can only have 30 Days ! ");
+                    }
                 }
             }else{
-                System.out.println("Enter a valid month ! ");
+                return false;
+
             }
-        }else{
+        }else if (toIntYear(tempDate) >= toIntYear()){
+            if(toIntMonth(tempDate) >0 && toIntMonth(tempDate)<13 && toIntMonth(tempDate) >= toIntMonth() ){
+                if(toIntMonth(tempDate) == 2){
+                    if (toIntDay(tempDate)>0 && toIntDay(tempDate) <29 && toIntDay(tempDate) >= toIntDay() ){
+                        return true;
+                    }else{
+                        System.out.println("The month of February can only have 29 days for Leap Year ! ");
+                    }
+                }else if(( (toIntMonth(tempDate) == 1) || (toIntMonth(tempDate) == 3) || (toIntMonth(tempDate) == 5) || (toIntMonth(tempDate) == 7) || (toIntMonth(tempDate) == 8) || (toIntMonth(tempDate) == 10) || (toIntMonth(tempDate) ==12 )) && toIntMonth(tempDate) >= toIntMonth()  ){
+                    if( toIntDay(tempDate) > 0 && toIntDay(tempDate) < 32 && toIntDay(tempDate) >= toIntDay() ){
+                        return true;
+                    }else{
+                        System.out.println("This month can only have 31 Days ! ");
+                    } 
+                }else{
+                    if( toIntDay(tempDate) > 0 && toIntDay(tempDate) < 31 && toIntDay(tempDate) >= toIntDay() ){
+                        return true;
+                    }else{
+                        System.out.println("This month can only have 30 Days ! ");
+                    }
+                }
+            }else{
+                return false;
 
+            }
         }
-
         return false;
     }
 }
