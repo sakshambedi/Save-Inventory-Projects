@@ -68,10 +68,10 @@ public class DateObj{
     public boolean validateDate(String expirationDate) throws StringIndexOutOfBoundsException{
         String tempDate = expirationDate;    
         // Conditions for leap year
-        if ((toIntYear(tempDate) % 4 == 0 ) && (toIntYear(tempDate) >= toIntYear()) ){
-            if(toIntMonth(tempDate) >0 && toIntMonth(tempDate)<13 && toIntMonth(tempDate) >= toIntMonth() ){
+        if ((toIntYear(tempDate) % 4 == 0 ) && (toIntYear(tempDate) >= toIntYear()) && String.valueOf(toIntYear(tempDate)).length()==4){
+            if(toIntMonth(tempDate) >0 && toIntMonth(tempDate)<13 && toIntMonth(tempDate) >= toIntMonth() && String.valueOf(toIntMonth(tempDate)).length()==2 ){
                 if(toIntMonth(tempDate) == 2){
-                    if (toIntDay(tempDate)>0 && toIntDay(tempDate) <30 && toIntDay(tempDate) >= toIntDay() ){
+                    if (toIntDay(tempDate)>0 && toIntDay(tempDate) <30 && toIntDay(tempDate) >= toIntDay() && String.valueOf(toIntDay(tempDate)).length()==2 ){
                         return true;
                     }else{
                         System.out.println("The month of February can only have 29 days for Leap Year ! ");
@@ -93,10 +93,10 @@ public class DateObj{
                 return false;
 
             }
-        }else if (toIntYear(tempDate) >= toIntYear()){
-            if(toIntMonth(tempDate) >0 && toIntMonth(tempDate)<13 && toIntMonth(tempDate) >= toIntMonth() ){
+        }else if ((toIntYear(tempDate) % 4 != 0 )&&toIntYear(tempDate) >= toIntYear() && String.valueOf(toIntYear(tempDate)).length()==4 ){
+            if(toIntMonth(tempDate) >0 && toIntMonth(tempDate)<13 && toIntMonth(tempDate) >= toIntMonth() && String.valueOf(toIntMonth(tempDate)).length()==2){
                 if(toIntMonth(tempDate) == 2){
-                    if (toIntDay(tempDate)>0 && toIntDay(tempDate) <29 && toIntDay(tempDate) >= toIntDay() ){
+                    if (toIntDay(tempDate)>0 && toIntDay(tempDate) <29 && toIntDay(tempDate) >= toIntDay() && String.valueOf(toIntDay(tempDate)).length()==2){
                         return true;
                     }else{
                         System.out.println("The month of February can only have 29 days for Leap Year ! ");

@@ -76,25 +76,52 @@ public class saveInventory {
     // used for enterint data 
     // data stored in the items object 
     public static void enterData(){
+        printMessages.printUIStar();
+        System.out.print("Enter an Item in the Data Base : ");
+        String foodItem = enterItem.next();
+
+        // runs the loop untill the stop key is not entered 
+        // Stop Key : "esc"
+
+        while(!foodItem.equals("esc")){
+            String returnString = enterDateforData();
+
+            // this condition print statment for debugging 
+            if (!returnString.equals("Error")){
+                System.out.println("This Function Works !");  
+            }else{
+                System.out.println("System Error");
+            }
+            System.out.print("Enter an Item in the Data Base : ");
+            foodItem = enterItem.next();  
+        }
+    }
+
+
+    private static String enterDateforData(){
         System.out.print("Enter the Date (DD/MM/YYYY) : ");
         String enteredDate = enterItem.next();
         // try catch block to avoid exceptions
         try{
             if (currDate.validateDate(enteredDate)){
                 System.out.println("Function Works");
+                return enteredDate;
             }else{
                 System.out.println("Please enter a valid date !");
+                return "Error";
             }
-        }/*catch(StringIndexOutOfBoundsException StringIndexExcept){
+        }catch(StringIndexOutOfBoundsException StringIndexExcept){
             //StringIndexExcept.printStackTrace();
             System.out.println(printMessages.printUIStar());
             System.out.println("The entered Date is not complete \nError : " + StringIndexExcept.getMessage());
             System.out.println(printMessages.printUIStar());
-        }*/catch(InputMismatchException InputMisExcept){
+            return "Error";
+        }catch(InputMismatchException InputMisExcept){
             System.out.println(printMessages.printUIStar());
             System.out.println("Please enter single digit numbers as double digit.\nFor Example : Enter \"1\" as \"01\"   \nError : " + InputMisExcept.getMessage());
             System.out.println(printMessages.printUIStar());
+            return "Error";
         }
-        
+        //return "Error";
     }
 }
