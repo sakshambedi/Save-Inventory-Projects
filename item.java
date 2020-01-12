@@ -4,15 +4,22 @@
 
 */
 
+// ----------------importing libraries -------------------------
+import java.util.Date;
 
 public class item {
 
     String itemName;
-    DateObj dateItem;
+    Date date;
+    
+    // DUMMY constructor class
+    public item(){
+        itemName = "null";
+    }
 
-    public item(String name, DateObj date){
+    public item(String name,String foodType,String dateExpiration){
         itemName = name;
-        dateItem = date; 
+        //date = Date. 
     }
 
 }

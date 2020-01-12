@@ -13,7 +13,7 @@
 
 // ------------ Importing Libararies --------------
 import java.util.Date;
-import java.util.InputMismatchException;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class saveInventory {
@@ -25,7 +25,7 @@ public class saveInventory {
     static Scanner enterItem = new Scanner(System.in);
     static final int maxInput = 2; 
     // creating a new object for date
-    static DateObj currDate = new DateObj();
+    //static DateObj currDate = new DateObj();
 
     
     // creating an object print messages to creat a new object
@@ -36,12 +36,6 @@ public class saveInventory {
 
         // create a fucking menu
         // use a java messages classes for that
-        System.out.println(printMessages.printUIStar());
-
-        // debugging
-        System.out.println(currDate.toIntDay() + "" + currDate.toIntMonth() + "" +  currDate.toIntYear()); 
-
-
         // print menu messages
         printMessages.openMessage();
         printMessages.printMenu();
@@ -49,7 +43,7 @@ public class saveInventory {
         
         // prints : Enter the number to perform the task 
         System.out.print(printMessages.userInputMessage());
-        printMessages.printUIStar();
+       
         int userInput = enterItem.nextInt();
 
 
@@ -67,61 +61,69 @@ public class saveInventory {
     private static void switchCase(int userValue) {
         switch (userValue) {
         case 1:
-            enterData();
+            enterUserItem();
             break;
         }
     }
 
 
-    // used for enterint data 
-    // data stored in the items object 
-    public static void enterData(){
-        printMessages.printUIStar();
-        System.out.print("Enter an Item in the Data Base : ");
-        String foodItem = enterItem.next();
+    // method to enter food items 
+    // Enters the food 
+    // then call a method to enter type of item 
+    // then enter a valid date in String 
+    // String date is then changed to date Java Object
+    // Return type to void for now  
+    private static void enterUserItem(){
+        
+        // assigning variables 
+        String[] foodInfo = new String[3];
 
-        // runs the loop untill the stop key is not entered 
-        // Stop Key : "esc"
+        printMessages.printFoodTypeMenu();
 
-        while(!foodItem.equals("esc")){
-            String returnString = enterDateforData();
+        System.out.print(printMessages.printEnterItem());
+        String itemsEnteredUser = enterItem.next();
+        while(!itemsEnteredUser.equals("esc") && !itemsEnteredUser.equals(" ") ){
+            
 
-            // this condition print statment for debugging 
-            if (!returnString.equals("Error")){
-                System.out.println("This Function Works !");  
-            }else{
-                System.out.println("System Error");
+            String itemType = enterUserType(); 
+
+
+            String Date = enterUserDate();
+            System.out.print(Date);
+            
+            // ask again 
+            System.out.print(printMessages.printEnterItem());
+            itemsEnteredUser = enterItem.next();
+        }
+        //return 
+    }
+
+
+    // 
+    private static int enterUserType(){
+        // assingning variable 
+        int foodType = 0;
+        while(foodType<0 || foodType > 3){
+            System.out.println(printMessages.printEnterType());
+            foodType = enterItem.nextInt();
+            if(foodType<=1 || foodType>=3){
+                return foodType;
+            }else {
+                foodType = 0;
             }
-            System.out.print("Enter an Item in the Data Base : ");
-            foodItem = enterItem.next();  
         }
     }
 
 
-    private static String enterDateforData(){
-        System.out.print("Enter the Date (DD/MM/YYYY) : ");
-        String enteredDate = enterItem.next();
-        // try catch block to avoid exceptions
-        try{
-            if (currDate.validateDate(enteredDate)){
-                System.out.println("Function Works");
-                return enteredDate;
-            }else{
-                System.out.println("Please enter a valid date !");
-                return "Error";
-            }
-        }catch(StringIndexOutOfBoundsException StringIndexExcept){
-            //StringIndexExcept.printStackTrace();
-            System.out.println(printMessages.printUIStar());
-            System.out.println("The entered Date is not complete \nError : " + StringIndexExcept.getMessage());
-            System.out.println(printMessages.printUIStar());
-            return "Error";
-        }catch(InputMismatchException InputMisExcept){
-            System.out.println(printMessages.printUIStar());
-            System.out.println("Please enter single digit numbers as double digit.\nFor Example : Enter \"1\" as \"01\"   \nError : " + InputMisExcept.getMessage());
-            System.out.println(printMessages.printUIStar());
-            return "Error";
-        }
-        //return "Error";
-    }
+    // method to enter date and return the date 
+    // need to add verification system for the entered date
+    private static String enterUserDate(){
+        System.out.print(printMessages.printEnterDate());
+        String enteredDateUser = enterItem.next();
+        System.out.println(printMessages.printUIStar());
+        return enteredDateUser;
+    }  
 }
+
+
+   
