@@ -40,22 +40,39 @@ public class saveInventory {
         printMessages.openMessage();
         printMessages.printMenu();
 
-        
-        // prints : Enter the number to perform the task 
-        System.out.print(printMessages.userInputMessage());
-       
-        int userInput = enterItem.nextInt();
-
-
-        if (userInput > 0 && userInput < maxInput) {
-            switchCase(userInput);
-        }else{
-            System.out.println("Enter a valid number !");
-        }
+        // ask for user input 
+        askForInput();
 
         // close the scanner Object 
         enterItem.close();
     }
+
+
+    // asks users for input 
+    // put into separate method to re-use it  
+    private static void askForInput(){
+          // prints : Enter the number to perform the task 
+          System.out.print(printMessages.userInputMessage());
+          int userInput = enterItem.nextInt();
+          performAction(userInput);  
+    }
+    
+
+    //method to call funtions depending upon the input by the user 
+    // put in a different method to make recall different methods easy 
+    // help to make a continues experience 
+    private static void performAction(int userInput){
+        if(userInput<0 || userInput >= maxInput){
+            System.out.println("\nPlease enter a valid number !");
+           
+            // asks again for the number 
+            askForInput();
+
+        }else if (userInput > 0 || userInput < maxInput) {
+            switchCase(userInput);
+        }
+    }
+
 
     // switch case for the value entered by the user 
     private static void switchCase(int userValue) {
@@ -84,34 +101,32 @@ public class saveInventory {
         String itemsEnteredUser = enterItem.next();
         while(!itemsEnteredUser.equals("esc") && !itemsEnteredUser.equals(" ") ){
             
-
-            String itemType = enterUserType(); 
+            System.out.print(printMessages.printEnterType());
+            int foodTypeInt = enterItem.nextInt();
+            enterUserType(foodTypeInt); 
 
 
             String Date = enterUserDate();
-            System.out.print(Date);
+            // this is for debugging 
+            //System.out.print(Date);
             
             // ask again 
             System.out.print(printMessages.printEnterItem());
             itemsEnteredUser = enterItem.next();
         }
-        //return 
+        askForInput();
+        
     }
 
 
-    // 
-    private static int enterUserType(){
+    // method to enter food Type in int and 
+    private static int enterUserType(int foodType){
         // assingning variable 
-        int foodType = 0;
         while(foodType<0 || foodType > 3){
             System.out.println(printMessages.printEnterType());
             foodType = enterItem.nextInt();
-            if(foodType<=1 || foodType>=3){
-                return foodType;
-            }else {
-                foodType = 0;
-            }
         }
+        return foodType;
     }
 
 

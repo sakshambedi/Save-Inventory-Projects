@@ -25,18 +25,18 @@ public class messages{
         //System.out.println("The Current Time is "+saveInventory.TIME + "\n");
         System.out.println(printUIStar());
         System.out.println("Enter the option below to do the following tasks !"); 
-        System.out.println(printUIStar());
+        // System.out.println(printUIStar());
     }
 
     // mehtod to print the menu for performing functions 
     public void printMenu(){
-        System.out.println(printUIStar());
+        System.out.print("\n");
         System.out.println("1. Add an item to the database !");
         System.out.println(printUIStar());
     }
 
     public String userInputMessage(){
-        return "Enter the number to perform the task : ";
+        return "Enter the number to perform the task (0 to leave): ";
     }
 
 
@@ -50,17 +50,18 @@ public class messages{
         System.out.println("1.Grocery \t 2.Medicine \t 3.Pet Food");
         System.out.println("Enter the Date of the bought items as YYYY-MM-DD ");
         System.out.println("Enter esc to exit !");
+        System.out.println("--------------------------------------------------");
         System.out.println(printUIStar());
     }
 
 
     public String printEnterItem(){
-        return "Enter the Item Bought : ";
+        return "Enter the Item Bought (Type esc to leave) : ";
     }
 
 
     public String printEnterType(){
-        return "Enter the Date of Expiration : ";
+        return "Enter the corresponding number for the type of\nitem purcashed (1.Grocery  2.Medicine  3.Pet Food): ";
     }
 
 
