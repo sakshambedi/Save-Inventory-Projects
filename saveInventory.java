@@ -98,7 +98,7 @@ public class saveInventory {
         printMessages.printFoodTypeMenu();
 
         System.out.print(printMessages.printEnterItem());
-        String itemsEnteredUser = enterItem.next();
+        String itemsEnteredUser = enterItem.nextLine();
         while(!itemsEnteredUser.equals("esc") && !itemsEnteredUser.equals(" ") ){
             
             System.out.print(printMessages.printEnterType());
@@ -112,7 +112,7 @@ public class saveInventory {
             
             // ask again 
             System.out.print(printMessages.printEnterItem());
-            itemsEnteredUser = enterItem.next();
+            itemsEnteredUser = enterItem.nextLine();
         }
         askForInput();
         
@@ -135,8 +135,11 @@ public class saveInventory {
     private static String enterUserDate(){
         System.out.print(printMessages.printEnterDate());
         String enteredDateUser = enterItem.next();
-        System.out.println(printMessages.printUIStar());
-        return enteredDateUser;
+        if(DateObj.verifyEnteredDate(enteredDateUser)){
+            // System.out.println(printMessages.printUIStar());
+            return enteredDateUser;
+        }
+        return "Error in date ";
     }  
 }
 
