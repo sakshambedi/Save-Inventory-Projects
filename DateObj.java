@@ -1,3 +1,11 @@
+/*
+@@  
+    DateObj built on top of Date Class in java 
+
+    Programmed by : Saksham "Saks" Bedi
+
+@@
+*/
 
 // ---------------- Importing Libraries ------------------
 import java.util.Date;
@@ -30,20 +38,22 @@ public class DateObj extends Date {
             // entered in the right format 
             if(checkLongDateFormat(tempDate)){
                 // System.out.println("Long Date Works Perfect");
-                System.out.println("Code works perectly till here !");
+                // System.out.println("Code works perectly till here !");
                 // convertStringtoDate(tempDate);
+                return true;
             }
         }else if (dateLength == 8){
             // call for checking if the entered date 8 characters is
             // entered in the right format
             if(checkShortDateFormat(tempDate)){
-                System.out.println("Short Date Works Perfect");
-                conversionMethod(tempDate);
+                // System.out.println("Short Date Works Perfect");
+                // conversionMethod(tempDate);
+                return true;
             }
         }else if(dateLength ==9) {
             if(checkLongerDateFormat(tempDate)){
-                System.out.println("Dates will length 9 works perfect");
-
+                // System.out.println("Dates will length 9 works perfect");
+                return true;
             }
         }else {
             System.out.println(printMessages.printUIStar());
@@ -52,7 +62,7 @@ public class DateObj extends Date {
             System.out.println("The entered Date does not meet the requirement.");
             System.out.println(printMessages.printUIStar());
         }
-        return true;
+        return false;
     }
 
 
@@ -83,7 +93,7 @@ public class DateObj extends Date {
             tempMonth  = tempMonth.substring(5, 6);
             tempDay = tempDay.substring(7);
             StringDate = StringDate.substring(0, 5) + correctShortDate(tempMonth) + "-"+ correctShortDate(tempDay);
-            System.out.println(StringDate);
+            // System.out.println(StringDate);
             return convertStringtoInt(StringDate);
         }else{
             System.out.println(printMessages.printUIStar());
@@ -105,7 +115,7 @@ public class DateObj extends Date {
         if(firstIndex == 4 && StringDate.lastIndexOf("-") == (firstIndex+3)){ 
             String correctDateElement = correctShortDate(tempDate.substring(8));
             StringDate = StringDate.substring(0, 8) + correctDateElement;
-            System.out.println(StringDate);
+            // System.out.println(StringDate);
             return convertStringtoInt(StringDate);
         }
 
@@ -113,7 +123,7 @@ public class DateObj extends Date {
         else if(firstIndex == 4 && StringDate.lastIndexOf("-") == (firstIndex+2)){
             String correctDateElement = correctShortDate(tempDate.substring(5,6));
             StringDate = StringDate.substring(0, 5) + correctDateElement + StringDate.substring(6);
-            System.out.println(StringDate);
+            // System.out.println(StringDate);
             return convertStringtoInt(StringDate);
         }
         else{
@@ -191,7 +201,7 @@ public class DateObj extends Date {
             int day = Integer.valueOf(splitDay(StringDate));
             // debugging 
             // System.out.println("The following code returns : \n" +year + " " + month + " " + day);
-            return true ;
+            return greatThanTodayDate(StringDate) ;
        }catch(NumberFormatException nfException ){
             System.out.println(printMessages.printUIStar());
             System.out.println("Error");
@@ -227,11 +237,19 @@ public class DateObj extends Date {
 
 
     // boolean method to compare the current date to the entered Date by the user 
-    // 
-    private static int greatThanTodayDate(String StringDate){
+    // ANYTHING ABOVE OR EQUAL TO 0 IS ACCEPTABLE 
+    private static boolean greatThanTodayDate(String StringDate){
         LocalDate todayDate = LocalDate.now();
         LocalDate userDate = LocalDate.parse(StringDate);
-        return userDate.compareTo(todayDate);
+        if(userDate.compareTo(todayDate)>=0){
+            return true;
+        }else{
+            System.out.println(printMessages.printUIStar());
+            System.out.println("Explicit Date Error (Date 420) :");
+            System.out.println("This is a old date !");
+            System.out.println(printMessages.printUIStar());
+        }
+        return false;
     }
     
 
@@ -248,16 +266,21 @@ public class DateObj extends Date {
         main method for DateObj
     */
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         /*
             Debugging entered date 
             Testing different entered Dates as string 
         
         System.out.println("When correct dates are entered : ");
         verifyEnteredDate("2020-02-12");
-        verifyEnteredDate("202/-02-12");
-        verifyEnteredDate("/221-1/-1/");
-        // verifyEnteredDate("2020-2-2");
+        System.out.println("Old Date : ");
+        verifyEnteredDate("2020-01-12");
+        System.out.println("Longer Date month 2 :");
+        verifyEnteredDate("2020-2-12");
+        System.out.println("Longer Date day 1 :");
+        verifyEnteredDate("2021-12-1");
+        System.out.println("short Date month 2 and day 2 :");
+        verifyEnteredDate("2020-2-2");
         */
 
         /*
@@ -316,12 +339,13 @@ public class DateObj extends Date {
         checkShortDateFormat("2019-4-2");
         */
 
-        System.out.println(greatThanTodayDate("2020-01-27"));
+        /* Testing and Debugging 
+        
+          System.out.println(greatThanTodayDate("2020-01-27"));
         System.out.println(greatThanTodayDate("2020-02-27"));
         System.out.println(greatThanTodayDate("2020-01-30"));
         System.out.println(greatThanTodayDate("2020-01-13"));
         System.out.println(greatThanTodayDate("2020-04-27"));
-
-    }
+        */   
 }
 

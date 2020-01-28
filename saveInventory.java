@@ -98,7 +98,7 @@ public class saveInventory {
         printMessages.printFoodTypeMenu();
 
         System.out.print(printMessages.printEnterItem());
-        String itemsEnteredUser = enterItem.nextLine();
+        String itemsEnteredUser = enterItem.next();
         while(!itemsEnteredUser.equals("esc") && !itemsEnteredUser.equals(" ") ){
             
             System.out.print(printMessages.printEnterType());
@@ -112,7 +112,7 @@ public class saveInventory {
             
             // ask again 
             System.out.print(printMessages.printEnterItem());
-            itemsEnteredUser = enterItem.nextLine();
+            itemsEnteredUser = enterItem.next();
         }
         askForInput();
         
