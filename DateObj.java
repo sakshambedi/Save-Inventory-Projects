@@ -254,8 +254,7 @@ public class DateObj extends Date {
     
 
 
-    // java deep clone method for String 
-    // instance method 
+    // java deep clone method for String  
     public static String StringClone(String enteredDate){
         String newstring = enteredDate;
         return newstring;

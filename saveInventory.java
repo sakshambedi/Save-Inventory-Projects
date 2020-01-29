@@ -88,7 +88,7 @@ public class saveInventory {
     // Enters the food 
     // then call a method to enter type of item 
     // then enter a valid date in String 
-    // String date is then changed to date Java Object
+    // String date is then changed to Localdate Java Object type 
     // Return type to void for now  
     private static void enterUserItem(){
         
@@ -106,16 +106,22 @@ public class saveInventory {
             enterUserType(foodTypeInt); 
 
 
-            String Date = enterUserDate();
+            String itemDate = enterUserDate();
             // this is for debugging 
             //System.out.print(Date);
+            
+            // assigning data in the array 
+            // this array is later passed to the other methods and will be future used
+            foodInfo[0] = itemsEnteredUser;
+            foodInfo[1] = String.valueOf(foodTypeInt);
+            foodInfo[2] = itemDate;
+
             
             // ask again 
             System.out.print(printMessages.printEnterItem());
             itemsEnteredUser = enterItem.next();
         }
         askForInput();
-        
     }
 
 
