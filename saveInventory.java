@@ -92,9 +92,6 @@ public class saveInventory {
     // Return type to void for now  
     private static void enterUserItem(){
         
-        // assigning variables 
-        String[] foodInfo = new String[3];
-
         printMessages.printFoodTypeMenu();
 
         System.out.print(printMessages.printEnterItem());
@@ -107,14 +104,17 @@ public class saveInventory {
 
 
             String itemDate = enterUserDate();
+            System.out.println("==================================================");
             // this is for debugging 
             //System.out.print(Date);
             
             // assigning data in the array 
             // this array is later passed to the other methods and will be future used
-            foodInfo[0] = itemsEnteredUser;
-            foodInfo[1] = String.valueOf(foodTypeInt);
-            foodInfo[2] = itemDate;
+            itemList listOfItems =  new itemList(itemsEnteredUser,foodTypeInt,itemDate);
+
+            
+            // writing this to a file 
+            writeToFile.writingMethod("testFile.txt",listOfItems.returnList());
 
             
             // ask again 
@@ -128,7 +128,7 @@ public class saveInventory {
     // method to enter food Type in int and 
     private static int enterUserType(int foodType){
         // assingning variable 
-        while(foodType<0 || foodType > 3){
+        while(foodType<0 || foodType >3){
             System.out.println(printMessages.printEnterType());
             foodType = enterItem.nextInt();
         }
@@ -141,11 +141,12 @@ public class saveInventory {
     private static String enterUserDate(){
         System.out.print(printMessages.printEnterDate());
         String enteredDateUser = enterItem.next();
-        if(DateObj.verifyEnteredDate(enteredDateUser)){
+        while(!DateObj.verifyEnteredDate(enteredDateUser)){
             // System.out.println(printMessages.printUIStar());
-            return enteredDateUser;
+            System.out.print(printMessages.printEnterDate());
+            enteredDateUser = enterItem.next();
         }
-        return "Error in date ";
+        return enteredDateUser;
     }  
 }
 

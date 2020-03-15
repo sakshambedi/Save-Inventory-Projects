@@ -56,11 +56,11 @@ public class DateObj extends Date {
                 return true;
             }
         }else {
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
             System.out.println("Error in the entered Date !");
             System.out.println("Description : ");
             System.out.println("The entered Date does not meet the requirement.");
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
         }
         return false;
     }
@@ -73,10 +73,10 @@ public class DateObj extends Date {
         if(StringDate.indexOf("-")==4 && StringDate.lastIndexOf("-") == 7 ){
             return convertStringtoInt(StringDate);
         }else{
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
             System.out.println("Inappropriate formatting issue");
             System.out.println("Check placement of - in the entered Date");
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
         }
         return false;
     }
@@ -96,10 +96,10 @@ public class DateObj extends Date {
             // System.out.println(StringDate);
             return convertStringtoInt(StringDate);
         }else{
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
             System.out.println("Inappropriate formatting issue");
             System.out.println("Check placement of - in the entered Date");
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
         }
         return false;
     } 
@@ -127,10 +127,10 @@ public class DateObj extends Date {
             return convertStringtoInt(StringDate);
         }
         else{
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
             System.out.println("Inappropriate formatting issue");
             System.out.println("Check placement of dash (-) in the entered Date");
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
         }
         return false;
     } 
@@ -161,7 +161,7 @@ public class DateObj extends Date {
                     break;
             case 9: correctedDateElement = "09";
                     break;
-            default : correctedDateElement= "\n"+printMessages.printUIStar() + "\nExplicit use of method\nError in correctShortDate : DateObj class\n" + printMessages.printUIStar();
+            default : correctedDateElement= "\n"+ "**************************************************" + "\nExplicit use of method\nError in correctShortDate : DateObj class\n" + "**************************************************";
         }
         return correctedDateElement;
     } 
@@ -180,7 +180,7 @@ public class DateObj extends Date {
     }
 
 
-    // method to split month in the String date 
+    // method to split day in the String date 
     private static String splitDay(String StringDate){
         return StringDate.substring(8);
     }
@@ -203,11 +203,11 @@ public class DateObj extends Date {
             // System.out.println("The following code returns : \n" +year + " " + month + " " + day);
             return greatThanTodayDate(StringDate) ;
        }catch(NumberFormatException nfException ){
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
             System.out.println("Error");
             System.out.println("Explicit error in coversion of String to Int ");
             System.out.println(nfException.getMessage());
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
        }
        return false;
     }
@@ -219,10 +219,10 @@ public class DateObj extends Date {
         try{
             convertStringtoDate(StringDate);
         }catch(ParseException parseExcept){
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
             System.out.println("Error in the conversion of String to Date datat type !");
             System.out.println("Check the convertString to Date method !");
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
         }
     }
 
@@ -244,14 +244,22 @@ public class DateObj extends Date {
         if(userDate.compareTo(todayDate)>=0){
             return true;
         }else{
-            System.out.println(printMessages.printUIStar());
-            System.out.println("Explicit Date Error (Date 420) :");
+            messages.printUIStar();
+            System.out.println("Explicit Date Error :");
             System.out.println("This is a old date !");
-            System.out.println(printMessages.printUIStar());
+            messages.printUIStar();
         }
         return false;
     }
     
+
+    // only returns the digits part of the date 
+    // EX if the date is 2020-3-15 it will return 20200315
+    public static String fileNameDate(String userDate){ 
+        return splitYear(StringClone(userDate)) + 
+                splitMonth(StringClone(userDate)) + 
+                splitDay(StringClone(userDate)) + ".txt";
+    }
 
 
     // java deep clone method for String  
@@ -307,7 +315,7 @@ public class DateObj extends Date {
             Debugging correct short date method 
             Tests every switch case and without additional problem case of 1o and 11
         
-        System.out.println(printMessages.printUIStar());
+        messages.printUIStar();
         System.out.println("Testing changing of short date in long date elements : ");
         System.out.println(correctShortDate(String.valueOf(1)));
         System.out.println(correctShortDate(String.valueOf(2)));
@@ -320,7 +328,7 @@ public class DateObj extends Date {
         System.out.println(correctShortDate(String.valueOf(9)));
         System.out.println(correctShortDate(String.valueOf(10)));
         System.out.println(correctShortDate(String.valueOf(11)));
-        System.out.println(printMessages.printUIStar());
+        messages.printUIStar();
         */
 
 
