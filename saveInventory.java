@@ -78,8 +78,18 @@ public class saveInventory {
     private static void switchCase(int userValue) {
         switch (userValue) {
         case 1:
-            enterUserItem();
+            checkForDirectory();
             break;
+        }
+    }
+
+
+    // method to check if the directories exists or not 
+    private static void checkForDirectory(){
+        if(writeToFile.checkForDir()){
+            enterUserItem();
+        }else{
+            System.out.println("Directory does not exist !");
         }
     }
 

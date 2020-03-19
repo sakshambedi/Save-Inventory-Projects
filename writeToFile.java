@@ -29,9 +29,37 @@ public class writeToFile{
     }
 
 
+    // methods to check if the required directories exist or not 
+    // static because need to check only once when the file is compiled
+    public static boolean checkForDir(){
+        // Assigning variables 
+        String currentDir = System.getProperty("user.dir");
+        
+        File dirFile = new File( currentDir + "\\logFile");
+        File expiredLog = new File( currentDir + "\\Exp Log");
+        if (!dirFile.exists() && !expiredLog.exists()){
+            // printing UI messages
+            messages.printUIStar();
+            System.out.println("Necessary folders missing !");
+            System.out.println("Resolving issue.");
+            messages.printUIStar();
+
+            return dirFile.mkdir() && expiredLog.mkdir(); 
+        }
+
+        System.out.println("Issue Resolved");
+        return true;
+    }
+
+
+    // method that returns the default log File directory 
+    private String FileDirLocation(){
+        return System.getProperty("user.dir") + "\\logFile\\" ;
+    }
+
     // create a method that creates a file if there is none 
     private boolean checkForFile(String FileName,Object[] ProductInfo) throws IOException{
-        File fileObj = new File(FileName);
+        File fileObj = new File(FileDirLocation() + FileName);
             if(fileObj.createNewFile()){
                 // file doesn't already exist ! 
                 messages.printUIStar();
@@ -48,12 +76,13 @@ public class writeToFile{
     // method to write content to a file 
     // return type boolean to verify if the data was added to the file or not 
     private boolean writeData(String FileName, Object[] ProductInfo) throws IOException{
-        PrintWriter printFile = new PrintWriter(new FileWriter(FileName,true));
+        // isn't the best code here but can be fixed 
+        PrintWriter printFile = new PrintWriter(new FileWriter(FileDirLocation() + FileName,true));
         // for loop to control the concatenation of , and ; according to the data
         // adds , in the end of the data item and 
         // adds ; in the end of the data set 
-        for(int count = 0 ; count< 3 ; count++){
-            if (count<2){
+        for(int count = 0 ; count< 2 ; count++){
+            if (count<1){
                 ProductInfo[count] = ProductInfo[count]+",";
                 printFile.print(ProductInfo[count]);
             }else{
