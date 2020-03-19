@@ -22,7 +22,7 @@ public class writeToFile{
             // creating an object of this and file writing is done at an instance 
             writeToFile writeMethod =  new writeToFile();
         
-            writeMethod.checkForFile(DateObj.fileNameDate(String.valueOf(ProductInfo[2])),ProductInfo); 
+            writeMethod.checkForFile(fileName,ProductInfo); 
         }catch(IOException ioe){
             ioe.printStackTrace();
         }

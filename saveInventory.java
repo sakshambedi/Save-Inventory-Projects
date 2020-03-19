@@ -114,7 +114,7 @@ public class saveInventory {
 
             
             // writing this to a file 
-            writeToFile.writingMethod("testFile.txt",listOfItems.returnList());
+            writeToFile.writingMethod(DateObj.fileNameDate(itemDate),listOfItems.returnList());
 
             
             // ask again 
