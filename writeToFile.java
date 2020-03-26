@@ -34,7 +34,7 @@ public class writeToFile{
     public static boolean checkForDir(){
         // Assigning variables 
         String currentDir = System.getProperty("user.dir");
-        
+
         File dirFile = new File( currentDir + "\\logFile");
         File expiredLog = new File( currentDir + "\\Exp Log");
         if (!dirFile.exists() && !expiredLog.exists()){
@@ -47,7 +47,7 @@ public class writeToFile{
             return dirFile.mkdir() && expiredLog.mkdir(); 
         }
 
-        System.out.println("Issue Resolved");
+        // System.out.println("Issue Resolved");
         return true;
     }
 
