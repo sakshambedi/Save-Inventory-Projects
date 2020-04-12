@@ -19,7 +19,6 @@ public class DateObj extends Date {
     private static final long serialVersionUID = 7526472295622776147L; 
     static messages printMessages = new messages();
 
-
     // method to convert Date as String
     // accepts date is a parameter  
     public static String toStringDate(Date enteredDate){
@@ -262,7 +261,7 @@ public class DateObj extends Date {
     }
 
 
-    // java deep clone method for String  
+    // java deep clone instance method for String  
     public static String StringClone(String enteredDate){
         String newstring = enteredDate;
         return newstring;
