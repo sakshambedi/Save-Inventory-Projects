@@ -168,20 +168,20 @@ public class DateObj extends Date {
 
     
     // method to split year in the String date 
-    private static String splitYear(String StringDate){
-        return StringDate.substring(0, 4);
+    private static int splitYear(String StringDate){
+        return Integer.parseInt(StringDate.substring(0, 4));
     }
 
 
     // method to split month in the String date 
-    private static String splitMonth(String StringDate){
-        return StringDate.substring(5, 7);
+    private static int splitMonth(String StringDate){
+        return Integer.parseInt(StringDate.substring(5, 7));
     }
 
 
     // method to split day in the String date 
-    private static String splitDay(String StringDate){
-        return StringDate.substring(8);
+    private static int splitDay(String StringDate){
+        return Integer.parseInt(StringDate.substring(8));
     }
 
 
@@ -195,9 +195,9 @@ public class DateObj extends Date {
         // only passes true if all the values are parsed to Int 
         // otherwise prints a error messages
         try{
-            int year = Integer.valueOf(splitYear(StringDate));
-            int month = Integer.valueOf(splitMonth(StringDate));
-            int day = Integer.valueOf(splitDay(StringDate));
+            splitYear(StringDate);
+            splitMonth(StringDate);
+            splitDay(StringDate);
             // debugging 
             // System.out.println("The following code returns : \n" +year + " " + month + " " + day);
             return greatThanTodayDate(StringDate) ;
@@ -214,16 +214,16 @@ public class DateObj extends Date {
 
 
     // try catch method for conversion  of String to Date format
-    private static void conversionMethod(String StringDate){
-        try{
-            convertStringtoDate(StringDate);
-        }catch(ParseException parseExcept){
-            messages.printUIStar();
-            System.out.println("Error in the conversion of String to Date datat type !");
-            System.out.println("Check the convertString to Date method !");
-            messages.printUIStar();
-        }
-    }
+    // private static void conversionMethod(String StringDate){
+    //     try{
+    //         convertStringtoDate(StringDate);
+    //     }catch(ParseException parseExcept){
+    //         messages.printUIStar();
+    //         System.out.println("Error in the conversion of String to Date datat type !");
+    //         System.out.println("Check the convertString to Date method !");
+    //         messages.printUIStar();
+    //     }
+    // }
 
     // converts String to Date java type 
     // static method used to throw expection 
