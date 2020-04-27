@@ -20,10 +20,14 @@ public class readFile{
     private ArrayList<String[]> FileData = new ArrayList<String[]>(); 
     private File fileToRead;
 
+
+    // Constructor   
     public readFile(String FileWithDirectory){
         fileToRead = new File(FileWithDirectory);
     }
 
+
+    // method to read each file
     public void readLineLine() throws IOException{
         String tempString ="";
         BufferedReader buffReader = new BufferedReader(new FileReader(fileToRead));
