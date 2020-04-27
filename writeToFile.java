@@ -82,13 +82,8 @@ public class writeToFile{
         // adds , in the end of the data item and 
         // adds ; in the end of the data set 
         for(int count = 0 ; count< 2 ; count++){
-            if (count<1){
-                ProductInfo[count] = ProductInfo[count]+",";
-                printFile.print(ProductInfo[count]);
-            }else{
-                ProductInfo[count] = ProductInfo[count] + ";";
-                printFile.print(ProductInfo[count]);
-            }
+            if (count<1) printFile.print(ProductInfo[count]+",");
+            else         printFile.print(ProductInfo[count]+ ";");
         }
         printFile.close();
         return true;
