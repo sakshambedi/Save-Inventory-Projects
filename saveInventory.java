@@ -14,7 +14,15 @@
 // ------------ Importing Libararies --------------
 // import java.util.Date;
 // import java.util.Calendar;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class saveInventory {
     
@@ -23,7 +31,7 @@ public class saveInventory {
     // Creating a Scanner object 
     // accessible to all 
     static Scanner enterItem = new Scanner(System.in);
-    static final int maxInput = 2; 
+    static int maxInput = 2; 
     // creating a new object for date
     //static DateObj currDate = new DateObj();
 
@@ -37,7 +45,14 @@ public class saveInventory {
         // create a fucking menu
         // use a java messages classes for that
         // print menu messages
-        printMessages.openMessage();
+        System.out.println("--------------------------------------------------");
+        System.out.println("Welcome to Save Inventory !");
+        System.out.println("The Current Day is " +  LocalDate.now()/* currDate.toStringDAY()*/);
+        //System.out.println("The Current Time is "+saveInventory.TIME + "\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println("Enter the option below to do the following tasks !"); 
+
+        // printing the menu
         printMessages.printMenu();
 
         // ask for user input 
@@ -52,7 +67,8 @@ public class saveInventory {
     // put into separate method to re-use it  
     private static void askForInput(){
           // prints : Enter the number to perform the task 
-          System.out.print(printMessages.userInputMessage());
+          System.out.println("--------------------------------------------------");
+          System.out.print("\nEnter the number to perform the task (0 to leave): ");
           int userInput = enterItem.nextInt();
           performAction(userInput);  
     }
@@ -62,7 +78,7 @@ public class saveInventory {
     // put in a different method to make recall different methods easy 
     // help to make a continues experience 
     private static void performAction(int userInput){
-        if(userInput<0 || userInput >= maxInput){
+        if(userInput<0 || userInput >= maxInput+1){
             System.out.println("\nPlease enter a valid number !");
            
             // asks again for the number 
@@ -77,8 +93,9 @@ public class saveInventory {
     // switch case for the value entered by the user 
     private static void switchCase(int userValue) {
         switch (userValue) {
-        case 1:
-            checkForDirectory();
+        case 1: checkForDirectory();
+            break;
+        case 2 : listFilesinDirectory();
             break;
         }
     }
@@ -157,6 +174,20 @@ public class saveInventory {
         }
         return enteredDateUser;
     }  
+
+
+
+    // method to list all the files in the directory and initiate 
+    private static void listFilesinDirectory(){
+        System.out.println("Current files in your Inventory : ");
+        try (Stream<Path> walk = Files.walk(Paths.get(System.getProperty("user.dir")+"\\logFile\\"))) {
+            List<String> result = walk.filter(Files::isRegularFile).map(x -> x.toString()).collect(Collectors.toList());
+        
+            result.forEach(System.out::println);      
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

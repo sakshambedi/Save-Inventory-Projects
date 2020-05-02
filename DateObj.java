@@ -266,20 +266,31 @@ public class DateObj extends Date {
     }
 
 
-    // method that takes the corrected 
+    /*method that takes the date 
+    ** we do not need to check if the date is valid since the the date is entered after verifying the datd
+    ** @param enteredDate  
+    */
     public static String fileName(String enteredDate){
         // assigning variable 
         String tempDate ;
         if (enteredDate.length() == 10) tempDate = enteredDate;  
+
+        // checks for condition wher either the month or the day is single digit
         else if (enteredDate.length() == 9 ) {
+            // checks for condition YYYY-M-DD
             if(enteredDate.indexOf("-") == 4 && enteredDate.lastIndexOf("-") == 7){ 
                 String correctDateElement = correctShortDate(enteredDate.substring(8));
                 tempDate = enteredDate.substring(0, 8) + correctDateElement;
-            }else{
+            }
+
+            // check for condition YYYY-MM-D
+            else{
                 String correctDateElement = correctShortDate(enteredDate.substring(5,6));
                 tempDate = enteredDate.substring(0, 5) + correctDateElement + enteredDate.substring(6);
             }
         } 
+        //  else it deal with the conditon where the Day and month is a single digit 
+        // YYYY-M-D
         else{
             String tempDay = StringClone(enteredDate);
             String tempMonth = StringClone(enteredDate);

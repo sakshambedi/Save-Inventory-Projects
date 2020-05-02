@@ -36,13 +36,14 @@ public class writeToFile{
         String currentDir = System.getProperty("user.dir");
 
         File dirFile = new File( currentDir + "\\logFile");
-        File expiredLog = new File( currentDir + "\\Exp Log");
+        File expiredLog = new File( currentDir + "\\ExpLog");
         if (!dirFile.exists() && !expiredLog.exists()){
             // printing UI messages
-            messages.printUIStar();
+            System.out.println("--------------------------------------------------");
             System.out.println("Necessary folders missing !");
+            System.out.println("Cooking folders : " + dirFile.getName() + " and " + expiredLog.getName());
             System.out.println("Resolving issue.");
-            messages.printUIStar();
+            System.out.println("--------------------------------------------------");
 
             return dirFile.mkdir() && expiredLog.mkdir(); 
         }
@@ -62,9 +63,9 @@ public class writeToFile{
         File fileObj = new File(FileDirLocation() + FileName);
             if(fileObj.createNewFile()){
                 // file doesn't already exist ! 
-                messages.printUIStar();
+                System.out.println("--------------------------------------------------");
                 System.out.println("Created a new File : " + fileObj.getName()); 
-                messages.printUIStar();
+                System.out.println("--------------------------------------------------");
                 return checkForFile(FileName, ProductInfo);
             }else{
                 // System.out.println("File Exists !");

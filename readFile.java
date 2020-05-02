@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 // import java.nio.file.Path;
 import java.io.File;
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,8 +39,9 @@ public class readFile{
             // System.out.println(Arrays.toString(tempArray));
             FileData.add(tempArray);
         }
-        for(String[] str : FileData) System.out.println(Arrays.toString(str));
-        // BufferedReader.close();
+        // for(String[] str : FileData) System.out.println(Arrays.toString(str));
+        
+        //  closing file reading objects 
         buffReader.close();
         scanTokens.close();
     } 
@@ -56,5 +57,9 @@ public class readFile{
             ioEx.getMessage();
         }
     }
+
+
+    // method to read all the file in the given directory
+
 
 }
