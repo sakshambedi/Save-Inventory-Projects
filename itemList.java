@@ -32,7 +32,7 @@ public class itemList {
 
     // method to return the Integer type item 
     // public Integer toIntType(){
-    //     return  (Integer) arrayList[1];
+    //     return  (Integer)arrayList[1];
     // }
 
 

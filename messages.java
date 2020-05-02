@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class messages{
 
 
-    public static void printUIStar(){ System.out.println("**************************************************"); }
+    public static void printUIStar(){ System.out.println("--------------------------------------------------"); }
 
     public void openMessage(){
         // creating a new object 
@@ -45,7 +45,7 @@ public class messages{
     // method prints the initial print messages for entering items 
     public void printFoodTypeMenu(){
         printUIStar();
-        //System.out.println("**************************************************");
+        //System.out.println("--------------------------------------------------");
         System.out.println("-------------------- INSTRUCTIONS ----------------");
         System.out.println("You can enter the brought items!");
         System.out.println("The shopped items can be sorted on the bases of type of food. \nYour options are :");
