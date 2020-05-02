@@ -122,10 +122,9 @@ public class saveInventory {
             // this array is later passed to the other methods and will be future used
             itemList listOfItems =  new itemList(itemsEnteredUser,foodTypeInt,itemDate);
 
-            
-            // writing this to a file 
-            writeToFile.writingMethod(DateObj.fileNameDate(itemDate),listOfItems.returnList());
 
+            // write to file 
+            writeToFile.writingMethod(DateObj.fileName(itemDate),listOfItems.returnList());
             
             // ask again 
             System.out.print(printMessages.printEnterItem());

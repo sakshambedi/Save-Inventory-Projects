@@ -17,6 +17,7 @@ import java.time.LocalDate;
 
 public class DateObj extends Date {
     private static final long serialVersionUID = 7526472295622776147L; 
+    private static String fileNameDate; 
     
     // method to convert Date as String
     // accepts date is a parameter  
@@ -54,11 +55,11 @@ public class DateObj extends Date {
                 return true;
             }
         }else {
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
             System.out.println("Error in the entered Date !");
             System.out.println("Description : ");
             System.out.println("The entered Date does not meet the requirement.");
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
         }
         return false;
     }
@@ -71,10 +72,10 @@ public class DateObj extends Date {
         if(StringDate.indexOf("-")==4 && StringDate.lastIndexOf("-") == 7 ){
             return convertStringtoInt(StringDate);
         }else{
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
             System.out.println("Inappropriate formatting issue");
             System.out.println("Check placement of - in the entered Date");
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
         }
         return false;
     }
@@ -94,10 +95,10 @@ public class DateObj extends Date {
             // System.out.println(StringDate);
             return convertStringtoInt(StringDate);
         }else{
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
             System.out.println("Inappropriate formatting issue");
             System.out.println("Check placement of - in the entered Date");
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
         }
         return false;
     } 
@@ -110,7 +111,7 @@ public class DateObj extends Date {
         String tempDate = StringDate; 
 
         // check for this condition : YYYY-MM-D
-        if(firstIndex == 4 && StringDate.lastIndexOf("-") == (firstIndex+3)){ 
+        if(firstIndex == 4 && StringDate.lastIndexOf("-") == 7){ 
             String correctDateElement = correctShortDate(tempDate.substring(8));
             StringDate = StringDate.substring(0, 8) + correctDateElement;
             // System.out.println(StringDate);
@@ -125,10 +126,10 @@ public class DateObj extends Date {
             return convertStringtoInt(StringDate);
         }
         else{
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
             System.out.println("Inappropriate formatting issue");
             System.out.println("Check placement of dash (-) in the entered Date");
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
         }
         return false;
     } 
@@ -159,7 +160,7 @@ public class DateObj extends Date {
                     break;
             case 9: correctedDateElement = "09";
                     break;
-            default : correctedDateElement= "\n"+ "**************************************************" + "\nExplicit use of method\nError in correctShortDate : DateObj class\n" + "**************************************************";
+            default : correctedDateElement= "\n"+ "--------------------------------------------------" + "\nExplicit use of method\nError in correctShortDate : DateObj class\n" + "--------------------------------------------------";
         }
         return correctedDateElement;
     } 
@@ -201,11 +202,11 @@ public class DateObj extends Date {
             // System.out.println("The following code returns : \n" +year + " " + month + " " + day);
             return greatThanTodayDate(StringDate) ;
        }catch(NumberFormatException nfException ){
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
             System.out.println("Error");
             System.out.println("Explicit error in coversion of String to Int ");
             System.out.println(nfException.getMessage());
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
        }
        return false;
     }
@@ -217,10 +218,10 @@ public class DateObj extends Date {
     //     try{
     //         convertStringtoDate(StringDate);
     //     }catch(ParseException parseExcept){
-    //         System.out.println("**************************************************");
+    //         System.out.println("--------------------------------------------------");
     //         System.out.println("Error in the conversion of String to Date datat type !");
     //         System.out.println("Check the convertString to Date method !");
-    //         System.out.println("**************************************************");
+    //         System.out.println("--------------------------------------------------");
     //     }
     // }
 
@@ -238,15 +239,19 @@ public class DateObj extends Date {
     // boolean method to compare the current date to the entered Date by the user 
     // ANYTHING ABOVE OR EQUAL TO 0 IS ACCEPTABLE 
     private static boolean greatThanTodayDate(String StringDate){
+
+        
+        
+        // string method to make a new file
         LocalDate todayDate = LocalDate.now();
         LocalDate userDate = LocalDate.parse(StringDate);
         if(userDate.compareTo(todayDate)>=0){
             return true;
         }else{
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
             System.out.println("Explicit Date Error :");
             System.out.println("This is a old date !");
-            System.out.println("**************************************************");
+            System.out.println("--------------------------------------------------");
         }
         return false;
     }
@@ -261,6 +266,30 @@ public class DateObj extends Date {
     }
 
 
+    // method that takes the corrected 
+    public static String fileName(String enteredDate){
+        // assigning variable 
+        String tempDate ;
+        if (enteredDate.length() == 10) tempDate = enteredDate;  
+        else if (enteredDate.length() == 9 ) {
+            if(enteredDate.indexOf("-") == 4 && enteredDate.lastIndexOf("-") == 7){ 
+                String correctDateElement = correctShortDate(enteredDate.substring(8));
+                tempDate = enteredDate.substring(0, 8) + correctDateElement;
+            }else{
+                String correctDateElement = correctShortDate(enteredDate.substring(5,6));
+                tempDate = enteredDate.substring(0, 5) + correctDateElement + enteredDate.substring(6);
+            }
+        } 
+        else{
+            String tempDay = StringClone(enteredDate);
+            String tempMonth = StringClone(enteredDate);
+            tempMonth  = tempMonth.substring(5, 6);
+            tempDay = tempDay.substring(7);
+            tempDate = enteredDate.substring(0, 5) + correctShortDate(tempMonth) + "-"+ correctShortDate(tempDay);
+        }  
+        return tempDate.replace("-", "") + ".txt";
+    }
+
     // java deep clone instance method for String  
     public static String StringClone(String enteredDate){
         String newstring = enteredDate;
@@ -272,7 +301,7 @@ public class DateObj extends Date {
         main method for DateObj
     */
 
-    /*public static void main(String[] args){
+    public static void main(String[] args){
         /*
             Debugging entered date 
             Testing different entered Dates as string 
@@ -314,7 +343,7 @@ public class DateObj extends Date {
             Debugging correct short date method 
             Tests every switch case and without additional problem case of 1o and 11
         
-        System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
         System.out.println("Testing changing of short date in long date elements : ");
         System.out.println(correctShortDate(String.valueOf(1)));
         System.out.println(correctShortDate(String.valueOf(2)));
@@ -327,7 +356,7 @@ public class DateObj extends Date {
         System.out.println(correctShortDate(String.valueOf(9)));
         System.out.println(correctShortDate(String.valueOf(10)));
         System.out.println(correctShortDate(String.valueOf(11)));
-        System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
         */
 
 
@@ -352,6 +381,8 @@ public class DateObj extends Date {
         System.out.println(greatThanTodayDate("2020-01-30"));
         System.out.println(greatThanTodayDate("2020-01-13"));
         System.out.println(greatThanTodayDate("2020-04-27"));
-        */   
+        */ 
+        System.out.println();
+    }
 }
 
